@@ -8,6 +8,7 @@ namespace Section4BinarySearchTree
     {
         Node<T> Root;
         Node<T> Current;
+        public int ElementCount = 0;
         /// <summary>
         /// method for Inserting data in BST
         /// </summary>
@@ -19,6 +20,7 @@ namespace Section4BinarySearchTree
             {
                 this.Root = new Node<T>(data);
                 this.Current = Root;
+                ElementCount++;
                 return;
             }
             if (this.Current.data.CompareTo(data) > 0) //If data is less than data in root
@@ -28,6 +30,7 @@ namespace Section4BinarySearchTree
                 {
                     this.Current.leftNode = new Node<T>(data);
                     this.Current = Root;
+                    ElementCount++;
                 }
                 else
                 {
@@ -41,6 +44,7 @@ namespace Section4BinarySearchTree
                 {
                     this.Current.rightNode = new Node<T>(data);
                     this.Current = Root;
+                    ElementCount++;
                 }
                 else
                 {
@@ -69,6 +73,10 @@ namespace Section4BinarySearchTree
                 Console.WriteLine("Element in BST tree is: " + node.data);
                 Display(node.rightNode);
             }
+        }
+        public int GetSize()
+        {
+            return ElementCount;
         }
     }
 }
