@@ -9,6 +9,7 @@ namespace Section4BinarySearchTree
         Node<T> Root;
         Node<T> Current;
         public int ElementCount = 0;
+        bool Result = false;
         /// <summary>
         /// method for Inserting data in BST
         /// </summary>
@@ -24,9 +25,9 @@ namespace Section4BinarySearchTree
                 return;
             }
             if (this.Current.data.CompareTo(data) > 0) //If data is less than data in root
-                                                       //then current position node will be point to left.
+                                                       //then currentPosition node will be pointing to leftNode.
             {
-                if (this.Current.leftNode == null) //Checking left node is null or not.
+                if (this.Current.leftNode == null) //Checking leftNode is null or not.
                 {
                     this.Current.leftNode = new Node<T>(data);
                     this.Current = Root;
@@ -74,9 +75,45 @@ namespace Section4BinarySearchTree
                 Display(node.rightNode);
             }
         }
+        /// <summary>
+        /// getting size of BSt
+        /// </summary>
+        /// <returns></returns>
         public int GetSize()
         {
             return ElementCount;
+        }
+        /// <summary>
+        /// method for searching data in BST
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public bool SearchData(int data, Node<T> node)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+            else
+            {
+                if (this.Current.data.Equals(data)) //Checking for currentData equal to data or not.
+                {
+                    Result = true;
+                }
+                else if (this.Current.data.CompareTo(data) > 0) //If CurrentData is less than data in root then currentPosition of node
+                                                                //will be pointing to leftNode otherwise rightNode
+                {
+                    this.Current = this.Current.leftNode;
+                    SearchData(data, Current);
+                }
+                else
+                {
+                    this.Current = this.Current.rightNode;
+                    SearchData(data, Current);
+                }
+                return Result;
+            }
         }
     }
 }

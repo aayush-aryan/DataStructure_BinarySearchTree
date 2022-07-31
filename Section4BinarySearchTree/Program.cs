@@ -21,6 +21,9 @@ namespace Section4BinarySearchTree
             binarySearchTree.InsertData(67);
             binarySearchTree.Display(binarySearchTree.GetRoot());
             Console.WriteLine("NumberOfElements in BST is : " + binarySearchTree.GetSize());
+            Console.WriteLine();
+            bool result = binarySearchTree.SearchData(63, binarySearchTree.GetRoot());
+            Console.WriteLine(result);
         }
     }
 }
